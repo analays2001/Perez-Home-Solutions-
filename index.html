@@ -215,6 +215,7 @@ h1{font-size:45px}
 const gallery=document.getElementById("gallery");
 
 for(let i=1;i<=50;i++){
+if(i===25) continue; 
 const number=String(i).padStart(2,"0");
 const figure=document.createElement("figure");
 const img=document.createElement("img");
