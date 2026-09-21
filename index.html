@@ -40,6 +40,29 @@ section{padding:74px 0}
 .card p{color:#d4d4d4;margin-bottom:0}
 
 .work{background:#101010}
+.filters{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin:0 0 28px;
+}
+
+.filter-btn{
+background:#181818;
+color:#fff;
+border:1px solid var(--gold);
+padding:10px 16px;
+border-radius:999px;
+font-weight:800;
+cursor:pointer;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+background:var(--gold);
+color:#090909;
+}
 .gallery{columns:3 280px;column-gap:14px}
 figure{margin:0 0 14px;break-inside:avoid}
 .gallery img{width:100%;display:block;border-radius:7px;border:1px solid #292929;cursor:zoom-in}
@@ -174,6 +197,14 @@ h1{font-size:45px}
 <p>Completed work by Perez Home Solutions. Tap any photo to view it larger.</p>
 </div>
 
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="bathrooms">Bathrooms</button>
+  <button class="filter-btn" data-filter="kitchens">Kitchens</button>
+  <button class="filter-btn" data-filter="tile">Tile</button>
+  <button class="filter-btn" data-filter="flooring">Flooring</button>
+</div>
+
 <div class="gallery" id="gallery"></div>
 
 </div>
@@ -219,7 +250,24 @@ if(i===25) continue;
 const number=String(i).padStart(2,"0");
 const figure=document.createElement("figure");
 const img=document.createElement("img");
+let category="tile";
 
+if([
+  1,2,3,4,5,6,7,8,9,10,
+  11,12,13,14,15,16,17,18,19,20
+].includes(i)){
+  category="bathrooms";
+}
+
+if([21,22,23,24].includes(i)){
+  category="kitchens";
+}
+
+if([26,27,28,29,30,31,32,33,34,35].includes(i)){
+  category="flooring";
+}
+
+figure.dataset.category=category;
 img.src="images/project-"+number+".jpg";
 img.loading="lazy";
 img.alt="Perez Home Solutions completed remodeling project";
@@ -227,7 +275,18 @@ img.alt="Perez Home Solutions completed remodeling project";
 figure.appendChild(img);
 gallery.appendChild(figure);
 }
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
 
+    const filter=btn.dataset.filter;
+
+    document.querySelectorAll("#gallery figure").forEach(fig=>{
+      fig.style.display=(filter==="all" || fig.dataset.category===filter) ? "" : "none";
+    });
+  });
+});
 const lightbox=document.getElementById("lightbox");
 const lightboxImg=document.getElementById("lightboxImg");
 
