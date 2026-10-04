@@ -244,7 +244,20 @@ h1{font-size:45px}
 
 <script>
 const gallery=document.getElementById("gallery");
+const gallery=document.getElementById("gallery");
 
+const beforeAfterFigure=document.createElement("figure");
+beforeAfterFigure.dataset.category="bathrooms";
+
+const beforeAfterImg=document.createElement("img");
+beforeAfterImg.src="images/E36CAE26-9573-4374-ACC4-1D6EC8375635.png";
+beforeAfterImg.loading="lazy";
+beforeAfterImg.alt="Bathroom remodeling before and after by Perez Home Solutions";
+
+beforeAfterFigure.appendChild(beforeAfterImg);
+gallery.appendChild(beforeAfterFigure);
+
+for(let i=1;i<=50;i++){
 for(let i=1;i<=50;i++){
 if(i===25) continue; 
 const number=String(i).padStart(2,"0");
