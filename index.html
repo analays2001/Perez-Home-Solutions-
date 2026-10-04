@@ -255,7 +255,16 @@ beforeAfterImg.alt="Bathroom remodeling before and after by Perez Home Solutions
 
 beforeAfterFigure.appendChild(beforeAfterImg);
 gallery.appendChild(beforeAfterFigure);
+const kitchenBeforeAfterFigure=document.createElement("figure");
+kitchenBeforeAfterFigure.dataset.category="kitchens";
 
+const kitchenBeforeAfterImg=document.createElement("img");
+kitchenBeforeAfterImg.src="images/82484587-1574-4A9A-B9B9-87B566BCB60C.png";
+kitchenBeforeAfterImg.loading="lazy";
+kitchenBeforeAfterImg.alt="Kitchen remodeling before and after by Perez Home Solutions";
+
+kitchenBeforeAfterFigure.appendChild(kitchenBeforeAfterImg);
+gallery.appendChild(kitchenBeforeAfterFigure);
 for(let i=1;i<=50;i++){
 if(i===25) continue; 
 const number=String(i).padStart(2,"0");
